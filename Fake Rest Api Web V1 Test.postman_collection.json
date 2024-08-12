@@ -1,0 +1,411 @@
+{
+	"info": {
+		"_postman_id": "9e3fb0e0-be5d-4782-bea1-54b2e5e5373e",
+		"name": "Fake Rest Api Web V1 Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24204532"
+	},
+	"item": [
+		{
+			"name": "Activities",
+			"item": [
+				{
+					"name": "Activities",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is no empty\", function () {\r",
+									"  pm.expect(pm.response.json()).not.to.be.empty\r",
+									"});\r",
+									"\r",
+									"//Contract test\r",
+									"// Define the expected schema\r",
+									"var schema = {\r",
+									"    \r",
+									"  \"type\": \"array\",\r",
+									"  \"items\": [\r",
+									"    {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"dueDate\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"completed\": {\r",
+									"          \"type\": \"boolean\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"id\",\r",
+									"        \"title\",\r",
+									"        \"dueDate\",\r",
+									"        \"completed\"\r",
+									"      ]\r",
+									"    }\r",
+									"  ]\r",
+									"\r",
+									"};\r",
+									"\r",
+									"pm.test('Validate the contract test', function () {\r",
+									"\r",
+									"    pm.expect(tv4.validate(pm.response.json(), schema)).to.be.true;\r",
+									"});\r",
+									"\r",
+									"//Performance test\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain; v=1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Activities",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activities",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is no empty\", function () {\r",
+									"  pm.expect(pm.response.json()).not.to.be.empty\r",
+									"});\r",
+									"\r",
+									"//Contract test\r",
+									"// Define the expected schema\r",
+									"var schema = {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"dueDate\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"completed\": {\r",
+									"          \"type\": \"boolean\"\r",
+									"        }\r",
+									"      }\r",
+									"};\r",
+									"\r",
+									"pm.test('Validate the contract test', function () {\r",
+									"\r",
+									"    pm.expect(tv4.validate(pm.response.json(), schema)).to.be.true;\r",
+									"});\r",
+									"\r",
+									"//Performance test\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json; v=1.0",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "text/plain; v=1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 20,\n  \"title\": \"string\",\n  \"dueDate\": \"2024-08-11T19:25:37.690Z\",\n  \"completed\": true\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Activities",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activity by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is no empty\", function () {\r",
+									"  pm.expect(pm.response.json()).not.to.be.empty\r",
+									"});\r",
+									"\r",
+									"//Contract test\r",
+									"// Define the expected schema\r",
+									"var schema = {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"dueDate\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"completed\": {\r",
+									"          \"type\": \"boolean\"\r",
+									"        }\r",
+									"      }\r",
+									"};\r",
+									"\r",
+									"pm.test('Validate the contract test', function () {\r",
+									"\r",
+									"    pm.expect(tv4.validate(pm.response.json(), schema)).to.be.true;\r",
+									"});\r",
+									"\r",
+									"//Performance test\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain; v=1.0",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Activities/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "15",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activity by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is no empty\", function () {\r",
+									"  pm.expect(pm.response.json()).not.to.be.empty\r",
+									"});\r",
+									"\r",
+									"//Contract test\r",
+									"// Define the expected schema\r",
+									"var schema = {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"dueDate\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"completed\": {\r",
+									"          \"type\": \"boolean\"\r",
+									"        }\r",
+									"      }\r",
+									"};\r",
+									"\r",
+									"pm.test('Validate the contract test', function () {\r",
+									"\r",
+									"    pm.expect(tv4.validate(pm.response.json(), schema)).to.be.true;\r",
+									"});\r",
+									"\r",
+									"//Performance test\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json; v=1.0"
+							},
+							{
+								"key": "Accept",
+								"value": "text/plain; v=1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 15,\n  \"title\": \"Activity 15 modified by Jorge\",\n  \"dueDate\": \"2024-08-11T20:29:54.141Z\",\n  \"completed\": true\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Activities/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "15",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activity by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Activities/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "20",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/"
+		}
+	]
+}
